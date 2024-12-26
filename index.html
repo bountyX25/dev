@@ -1,0 +1,252 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>SquidGameSOL</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap');
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Roboto', sans-serif;
+        }
+
+        body {
+            background-color: #000;
+            color: #fff;
+            overflow-x: hidden;
+        }
+
+        .social-links {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            z-index: 1000;
+            display: flex;
+            gap: 20px;
+        }
+
+        .social-link {
+            color: #fff;
+            text-decoration: none;
+            font-size: 1.2rem;
+            padding: 10px 20px;
+            border: 2px solid #FF0077;
+            border-radius: 25px;
+            transition: all 0.3s ease;
+            background: rgba(0, 0, 0, 0.7);
+        }
+
+        .social-link:hover {
+            background: #FF0077;
+            transform: translateY(-3px);
+            box-shadow: 0 0 15px #FF0077;
+        }
+
+        .hero {
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            background: linear-gradient(rgba(0,0,0,0.8), rgba(0,0,0,0.8)),
+                        url('/api/placeholder/1920/1080') center/cover;
+            position: relative;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: radial-gradient(circle at center, transparent 0%, #000 100%);
+            pointer-events: none;
+        }
+
+        .title {
+            font-size: 6rem;
+            color: #FF0077;
+            text-transform: uppercase;
+            margin-bottom: 2rem;
+            animation: glow 2s ease-in-out infinite alternate;
+            letter-spacing: 5px;
+            font-weight: bold;
+        }
+
+        @keyframes glow {
+            from {
+                text-shadow: 0 0 10px #FF0077, 0 0 20px #FF0077, 0 0 30px #FF0077;
+            }
+            to {
+                text-shadow: 0 0 20px #FF0077, 0 0 30px #FF0077, 0 0 40px #FF0077, 0 0 50px #FF0077;
+            }
+        }
+
+        .shapes {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+            z-index: 1;
+        }
+
+        .shape {
+            position: absolute;
+            width: 50px;
+            height: 50px;
+            opacity: 0.5;
+            animation: float 6s infinite;
+            backdrop-filter: blur(5px);
+        }
+
+        .circle {
+            border-radius: 50%;
+            background: #45D1FD;
+            box-shadow: 0 0 20px #45D1FD;
+        }
+
+        .triangle {
+            width: 0;
+            height: 0;
+            border-left: 25px solid transparent;
+            border-right: 25px solid transparent;
+            border-bottom: 43.3px solid #FF0077;
+            filter: drop-shadow(0 0 10px #FF0077);
+        }
+
+        .square {
+            background: #32CD32;
+            box-shadow: 0 0 20px #32CD32;
+        }
+
+        @keyframes float {
+            0% {
+                transform: translateY(0) rotate(0deg);
+                opacity: 0.5;
+            }
+            50% {
+                transform: translateY(-100px) rotate(180deg);
+                opacity: 0.8;
+            }
+            100% {
+                transform: translateY(0) rotate(360deg);
+                opacity: 0.5;
+            }
+        }
+
+        .btn {
+            padding: 1.2rem 2.5rem;
+            font-size: 1.3rem;
+            background: transparent;
+            color: #fff;
+            border: 2px solid #FF0077;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            position: relative;
+            z-index: 2;
+            border-radius: 30px;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            overflow: hidden;
+        }
+
+        .btn::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(120deg, transparent, rgba(255,0,119,0.4), transparent);
+            transition: 0.5s;
+        }
+
+        .btn:hover::before {
+            left: 100%;
+        }
+
+        .btn:hover {
+            background: #FF0077;
+            transform: scale(1.1);
+            box-shadow: 0 0 20px #FF0077;
+        }
+
+        .content {
+            padding: 2rem;
+            max-width: 800px;
+            margin: 0 auto;
+            text-align: center;
+            position: relative;
+            z-index: 2;
+            background: rgba(0, 0, 0, 0.5);
+            border-radius: 20px;
+            backdrop-filter: blur(10px);
+        }
+
+        .description {
+            font-size: 1.4rem;
+            line-height: 1.8;
+            margin-bottom: 2.5rem;
+            color: #f0f0f0;
+            text-shadow: 0 0 10px rgba(255,255,255,0.3);
+        }
+    </style>
+</head>
+<body>
+    <div class="social-links">
+        <a href="https://t.me/SQUIDGaMesolan" class="social-link" target="_blank">Telegram</a>
+        <a href="https://x.com/SQUIDGaMesolan" class="social-link" target="_blank">X</a>
+    </div>
+
+    <div class="hero">
+        <div class="shapes">
+            <div class="shape circle" style="top: 20%; left: 20%"></div>
+            <div class="shape triangle" style="top: 60%; left: 70%"></div>
+            <div class="shape square" style="top: 40%; left: 40%"></div>
+            <div class="shape circle" style="top: 80%; left: 30%"></div>
+            <div class="shape triangle" style="top: 10%; left: 80%"></div>
+        </div>
+        
+        <div class="content">
+            <h1 class="title">SquidGameSOL</h1>
+            <p class="description">
+                Welcome to the world of Squid Game, where every decision could be your last, 
+                and each step might lead to victory or defeat. Join the game, if you dare, 
+                and test your limits in this ultimate survival challenge.
+            </p>
+            <button class="btn" onclick="startGame()">Play Now</button>
+        </div>
+    </div>
+
+    <script>
+        function createShapes() {
+            const shapes = document.querySelector('.shapes');
+            const shapeTypes = ['circle', 'triangle', 'square'];
+            
+            for (let i = 0; i < 8; i++) {
+                const shape = document.createElement('div');
+                const randomShape = shapeTypes[Math.floor(Math.random() * shapeTypes.length)];
+                shape.className = `shape ${randomShape}`;
+                
+                shape.style.top = `${Math.random() * 100}%`;
+                shape.style.left = `${Math.random() * 100}%`;
+                shape.style.animationDelay = `${Math.random() * 2}s`;
+                shape.style.animationDuration = `${6 + Math.random() * 4}s`;
+                
+                shapes.appendChild(shape);
+            }
+        }
+
+        function startGame() {
+            alert('Game Started! Good luck, player...');
+            // Additional game logic can be added here
+        }
+
+        window.onload = createShapes;
+    </script>
+</body>
+</html>
